@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
+
+	<display-name>Adminclient</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:application.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+
+	<servlet>
+		<servlet-name>MetaServlet</servlet-name>
+		<servlet-class>org.atemsource.atem.service.meta.service.http.MetaServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MetaServlet</servlet-name>
+		<url-pattern>/meta/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EntityServlet</servlet-name>
+		<servlet-class>org.atemsource.atem.service.entity.EntityServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EntityServlet</servlet-name>
+		<url-pattern>/entity/*</url-pattern>
+	</servlet-mapping>
+	
+    
+  
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.html</location>
+	</error-page>
+	
+	
+	<session-config>
+		<session-timeout>240</session-timeout>
+	</session-config>
+	
+	<resource-ref>
+      <description>DB Connection</description>
+      <res-ref-name>jdbc/DataSource</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+
+</web-app>
